@@ -4,21 +4,21 @@
 
 import { AppHeader } from "@/components/layout/app-header";
 import { ProjectsTable } from "@/components/projects/projects-table";
-import { useAuth } from "@/lib/auth-context";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 export default function ProjectsPage() {
-  const { isAuthenticated } = useAuth();
+  const { status } = useSession();
   const router = useRouter();
 
   useEffect(() => {
-    if (!isAuthenticated) {
+    if (status === "unauthenticated") {
       router.push("/login");
     }
-  }, [isAuthenticated, router]);
+  }, [router, status]);
 
-  if (!isAuthenticated) {
+  if (status !== "authenticated") {
     return null;
   }
 

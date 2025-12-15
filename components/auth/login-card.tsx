@@ -1,24 +1,41 @@
-// components/auth/login-card.tsx
-
 "use client";
 
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { useAuth } from "@/lib/auth-context";
 import { Shield, AlertTriangle } from "lucide-react";
-import { useState } from "react";
+import { signIn, useSession } from "next-auth/react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
+import Link from "next/link";
 
 export function LoginCard() {
-  const { login } = useAuth();
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const { status } = useSession();
   const [isLoading, setIsLoading] = useState(false);
+
+  const error = searchParams.get("error");
+  const isAccessDenied = error === "AccessDenied";
+
+  useEffect(() => {
+    if (status === "authenticated") {
+      router.replace("/projects");
+    }
+  }, [router, status]);
+
+  useEffect(() => {
+    if (isAccessDenied) {
+      router.replace("/request-access");
+    }
+  }, [isAccessDenied, router]);
 
   const handleLogin = async () => {
     setIsLoading(true);
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-
-    // Mock authenticated user email
-    login("admin@reviewfraud.com");
-    setIsLoading(false);
+    try {
+      await signIn("google", { callbackUrl: "/projects" });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -35,7 +52,7 @@ export function LoginCard() {
         </div>
 
         <div className="w-full bg-red-50 border-2 border-red-200 rounded-lg p-4 flex items-start gap-3">
-          <AlertTriangle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
+          <AlertTriangle className="w-5 h-5 text-red-600 mt-0.5" />
           <div className="text-sm text-red-800">
             <p className="font-semibold mb-1">Restricted Access</p>
             <p>
@@ -47,9 +64,9 @@ export function LoginCard() {
 
         <Button
           onClick={handleLogin}
-          className="w-full h-12 text-base"
+          className="w-full h-12 text-base bg-blue-600 hover:bg-blue-700 text-white"
           size="lg"
-          disabled={isLoading}
+          disabled={isLoading || status === "loading" || isAccessDenied}
         >
           {isLoading ? (
             <span className="flex items-center gap-2">
@@ -83,6 +100,13 @@ export function LoginCard() {
 
         <p className="text-xs text-muted-foreground text-center">
           By continuing, you agree to our Terms of Service and Privacy Policy
+        </p>
+
+        <p className="text-xs text-center">
+          Need access?{" "}
+          <Link href="/request-access" className="underline">
+            Request access
+          </Link>
         </p>
       </div>
     </Card>

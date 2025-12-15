@@ -3,7 +3,6 @@
 "use client";
 
 import { useParams, useRouter } from "next/navigation";
-import { useAuth } from "@/lib/auth-context";
 import { useEffect } from "react";
 import { AppHeader } from "@/components/layout/app-header";
 import { ReportHeader } from "@/components/report/report-header";
@@ -11,20 +10,21 @@ import { MetricsRow } from "@/components/report/metrics-row";
 import { ReportTabs } from "@/components/report/report-tabs";
 import { BusinessLocationMap } from "@/components/report/business-location-map";
 import { projects } from "@/data/projects";
+import { useSession } from "next-auth/react";
 
 export default function ProjectReportPage() {
   const params = useParams();
   const router = useRouter();
-  const { isAuthenticated } = useAuth();
+  const { status } = useSession();
   const projectId = params.id as string;
 
   useEffect(() => {
-    if (!isAuthenticated) {
+    if (status === "unauthenticated") {
       router.push("/login");
     }
-  }, [isAuthenticated, router]);
+  }, [router, status]);
 
-  if (!isAuthenticated) {
+  if (status !== "authenticated") {
     return null;
   }
 
