@@ -6,6 +6,12 @@ import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { Plus, MoreVertical } from "lucide-react";
 import { NewProjectModal } from "./new-project-modal";
 import { useRouter } from "next/navigation";
@@ -97,15 +103,48 @@ export function ProjectsTable() {
                     {project.totalReviews.toLocaleString()}
                   </td>
                   <td className="py-4 px-6">
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                      }}
-                    >
-                      <MoreVertical className="w-4 h-4" />
-                    </Button>
+                    <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                          }}
+                        >
+                          <MoreVertical className="w-4 h-4" />
+                        </Button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent
+                        align="end"
+                        className="w-40"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <DropdownMenuItem
+                          onClick={() => {
+                            router.push(`/projects/${project.id}`);
+                          }}
+                        >
+                          View report
+                        </DropdownMenuItem>
+                        <DropdownMenuItem
+                          onClick={() => {
+                            console.log("Duplicate project (mock)", project.id);
+                            window.alert("Duplicate project is a mock action in this demo.");
+                          }}
+                        >
+                          Duplicate (mock)
+                        </DropdownMenuItem>
+                        <DropdownMenuItem
+                          onClick={() => {
+                            console.log("Delete project (mock)", project.id);
+                            window.alert("Delete project is a mock action in this demo.");
+                          }}
+                        >
+                          Delete (mock)
+                        </DropdownMenuItem>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
                   </td>
                 </tr>
               ))}

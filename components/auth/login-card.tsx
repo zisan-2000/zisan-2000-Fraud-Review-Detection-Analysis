@@ -41,16 +41,20 @@ export function LoginCard() {
   return (
     <Card className="w-full max-w-md p-8 shadow-lg">
       <div className="flex flex-col items-center space-y-6">
+        {/* 🔵 BRAND HEADER (EXACT MATCH) */}
         <div className="flex flex-col items-center gap-3">
-          <div className="flex items-center gap-2">
-            <Shield className="w-10 h-10 text-blue-600" />
-            <h1 className="text-3xl font-bold text-gray-900">Review Fraud</h1>
+          <div className="w-14 h-14 rounded-xl bg-blue-600 flex items-center justify-center">
+            <Shield className="w-8 h-8 text-white" />
           </div>
+
+          <h1 className="text-2xl font-bold text-gray-900">Review Fraud</h1>
+
           <p className="text-sm text-muted-foreground text-center">
             Advanced Review Analysis & Fraud Detection
           </p>
         </div>
 
+        {/* ⚠️ RESTRICTED ACCESS NOTICE */}
         <div className="w-full bg-red-50 border-2 border-red-200 rounded-lg p-4 flex items-start gap-3">
           <AlertTriangle className="w-5 h-5 text-red-600 mt-0.5" />
           <div className="text-sm text-red-800">
@@ -62,6 +66,7 @@ export function LoginCard() {
           </div>
         </div>
 
+        {/* 🔐 GOOGLE LOGIN BUTTON */}
         <Button
           onClick={handleLogin}
           className="w-full h-12 text-base bg-blue-600 hover:bg-blue-700 text-white"
@@ -98,6 +103,7 @@ export function LoginCard() {
           )}
         </Button>
 
+        {/* 📜 FOOTER */}
         <p className="text-xs text-muted-foreground text-center">
           By continuing, you agree to our Terms of Service and Privacy Policy
         </p>
