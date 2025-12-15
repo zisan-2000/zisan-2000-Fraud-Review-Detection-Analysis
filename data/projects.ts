@@ -1,3 +1,5 @@
+// data/projects.ts
+
 export const projects = [
   {
     id: "1",
@@ -35,4 +37,4 @@ export const projects = [
     rating: 4.8,
     cid: "30891234567890123458",
   },
-]
+];

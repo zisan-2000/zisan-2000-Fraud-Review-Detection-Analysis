@@ -1,20 +1,26 @@
-"use client"
+// components/report/report-header.tsx
 
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { ArrowLeft, RefreshCw, Download, MapPin } from "lucide-react"
-import { useRouter } from "next/navigation"
+"use client";
+
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { ArrowLeft, RefreshCw, Download, MapPin } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 interface ReportHeaderProps {
-  project: any
+  project: any;
 }
 
 export function ReportHeader({ project }: ReportHeaderProps) {
-  const router = useRouter()
+  const router = useRouter();
 
   return (
     <div className="space-y-4">
-      <Button variant="ghost" onClick={() => router.push("/projects")} className="pl-0 hover:bg-transparent">
+      <Button
+        variant="ghost"
+        onClick={() => router.push("/projects")}
+        className="pl-0 hover:bg-transparent"
+      >
         <ArrowLeft className="w-4 h-4 mr-2" />
         Back to Dashboard
       </Button>
@@ -29,7 +35,10 @@ export function ReportHeader({ project }: ReportHeaderProps) {
         </div>
 
         <div className="flex items-center gap-3">
-          <Badge variant="secondary" className="bg-green-100 text-green-800 hover:bg-green-100">
+          <Badge
+            variant="secondary"
+            className="bg-green-100 text-green-800 hover:bg-green-100"
+          >
             {project.status}
           </Badge>
           <Button variant="outline" size="sm">
@@ -43,5 +52,5 @@ export function ReportHeader({ project }: ReportHeaderProps) {
         </div>
       </div>
     </div>
-  )
+  );
 }

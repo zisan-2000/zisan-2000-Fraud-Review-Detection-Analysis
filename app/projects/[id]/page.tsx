@@ -1,32 +1,34 @@
-"use client"
+// app/projects/[id]/page.tsx
 
-import { useParams, useRouter } from "next/navigation"
-import { useAuth } from "@/lib/auth-context"
-import { useEffect } from "react"
-import { AppHeader } from "@/components/layout/app-header"
-import { ReportHeader } from "@/components/report/report-header"
-import { MetricsRow } from "@/components/report/metrics-row"
-import { ReportTabs } from "@/components/report/report-tabs"
-import { BusinessLocationMap } from "@/components/report/business-location-map"
-import { projects } from "@/data/projects"
+"use client";
+
+import { useParams, useRouter } from "next/navigation";
+import { useAuth } from "@/lib/auth-context";
+import { useEffect } from "react";
+import { AppHeader } from "@/components/layout/app-header";
+import { ReportHeader } from "@/components/report/report-header";
+import { MetricsRow } from "@/components/report/metrics-row";
+import { ReportTabs } from "@/components/report/report-tabs";
+import { BusinessLocationMap } from "@/components/report/business-location-map";
+import { projects } from "@/data/projects";
 
 export default function ProjectReportPage() {
-  const params = useParams()
-  const router = useRouter()
-  const { isAuthenticated } = useAuth()
-  const projectId = params.id as string
+  const params = useParams();
+  const router = useRouter();
+  const { isAuthenticated } = useAuth();
+  const projectId = params.id as string;
 
   useEffect(() => {
     if (!isAuthenticated) {
-      router.push("/login")
+      router.push("/login");
     }
-  }, [isAuthenticated, router])
+  }, [isAuthenticated, router]);
 
   if (!isAuthenticated) {
-    return null
+    return null;
   }
 
-  const project = projects.find((p) => p.id === projectId) || projects[0]
+  const project = projects.find((p) => p.id === projectId) || projects[0];
 
   return (
     <div className="min-h-screen bg-slate-50">
@@ -49,5 +51,5 @@ export default function ProjectReportPage() {
         </div>
       </main>
     </div>
-  )
+  );
 }

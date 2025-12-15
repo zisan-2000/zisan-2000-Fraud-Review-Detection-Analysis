@@ -1,3 +1,5 @@
+// data/reviewers.ts
+
 export const reviewers = [
   {
     id: "1",
@@ -89,4 +91,4 @@ export const reviewers = [
     localGuideLevel: 1,
     suspiciousScore: 78,
   },
-]
+];

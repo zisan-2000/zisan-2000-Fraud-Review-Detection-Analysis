@@ -1,3 +1,5 @@
+// data/reviews.ts
+
 export const reviews = [
   {
     id: "1",
@@ -109,4 +111,4 @@ export const reviews = [
     isAnchor: false,
     reviewerTotalReviews: 12,
   },
-]
+];

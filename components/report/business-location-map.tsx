@@ -1,21 +1,28 @@
-"use client"
+// components/report/business-location-map.tsx
 
-import { Card } from "@/components/ui/card"
-import { ExternalLink } from "lucide-react"
-import { Button } from "@/components/ui/button"
+"use client";
+
+import { Card } from "@/components/ui/card";
+import { ExternalLink } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 interface BusinessLocationMapProps {
-  businessName: string
-  address: string
-  phone?: string
-  rating?: number
+  businessName: string;
+  address: string;
+  phone?: string;
+  rating?: number;
 }
 
-export function BusinessLocationMap({ businessName, address, phone, rating }: BusinessLocationMapProps) {
+export function BusinessLocationMap({
+  businessName,
+  address,
+  phone,
+  rating,
+}: BusinessLocationMapProps) {
   // Create Google Maps embed URL from business name and address
-  const mapQuery = encodeURIComponent(`${businessName} ${address}`)
-  const mapEmbedUrl = `https://www.google.com/maps?q=${mapQuery}&output=embed`
-  const mapDirectUrl = `https://www.google.com/maps/search/?api=1&query=${mapQuery}`
+  const mapQuery = encodeURIComponent(`${businessName} ${address}`);
+  const mapEmbedUrl = `https://www.google.com/maps?q=${mapQuery}&output=embed`;
+  const mapDirectUrl = `https://www.google.com/maps/search/?api=1&query=${mapQuery}`;
 
   return (
     <Card className="p-6">
@@ -65,5 +72,5 @@ export function BusinessLocationMap({ businessName, address, phone, rating }: Bu
         </div>
       </div>
     </Card>
-  )
+  );
 }

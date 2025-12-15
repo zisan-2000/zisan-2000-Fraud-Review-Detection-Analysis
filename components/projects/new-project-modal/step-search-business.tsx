@@ -1,13 +1,15 @@
-"use client"
+// components/projects/new-project-modal/step-search-business.tsx
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Search, MapPin, Phone, Star, Loader2 } from "lucide-react"
+"use client";
+
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Search, MapPin, Phone, Star, Loader2 } from "lucide-react";
 
 interface StepSearchBusinessProps {
-  onSelect: (business: any) => void
-  onBack: () => void
+  onSelect: (business: any) => void;
+  onBack: () => void;
 }
 
 const dummyBusinesses = [
@@ -74,40 +76,43 @@ const dummyBusinesses = [
     address: "5678 Main Street, Evanston, IL 60201",
     cid: "70891234567890123462",
   },
-]
+];
 
-export function StepSearchBusiness({ onSelect, onBack }: StepSearchBusinessProps) {
-  const [searchQuery, setSearchQuery] = useState("")
-  const [results, setResults] = useState<any[]>([])
-  const [hasSearched, setHasSearched] = useState(false)
-  const [isSearching, setIsSearching] = useState(false)
+export function StepSearchBusiness({
+  onSelect,
+  onBack,
+}: StepSearchBusinessProps) {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [results, setResults] = useState<any[]>([]);
+  const [hasSearched, setHasSearched] = useState(false);
+  const [isSearching, setIsSearching] = useState(false);
 
   const handleSearch = async () => {
     if (!searchQuery.trim()) {
-      setResults([])
-      setHasSearched(false)
-      return
+      setResults([]);
+      setHasSearched(false);
+      return;
     }
 
-    setIsSearching(true)
-    setHasSearched(false)
+    setIsSearching(true);
+    setHasSearched(false);
 
     // Simulate API delay
-    await new Promise((resolve) => setTimeout(resolve, 800))
+    await new Promise((resolve) => setTimeout(resolve, 800));
 
     // Filter results based on search query
-    const query = searchQuery.toLowerCase()
+    const query = searchQuery.toLowerCase();
     const filtered = dummyBusinesses.filter(
       (business) =>
         business.name.toLowerCase().includes(query) ||
         business.address.toLowerCase().includes(query) ||
-        business.phone.includes(query),
-    )
+        business.phone.includes(query)
+    );
 
-    setResults(filtered)
-    setHasSearched(true)
-    setIsSearching(false)
-  }
+    setResults(filtered);
+    setHasSearched(true);
+    setIsSearching(false);
+  };
 
   return (
     <div className="space-y-6">
@@ -120,7 +125,11 @@ export function StepSearchBusiness({ onSelect, onBack }: StepSearchBusinessProps
           autoFocus
         />
         <Button onClick={handleSearch} disabled={isSearching}>
-          {isSearching ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Search className="w-4 h-4 mr-2" />}
+          {isSearching ? (
+            <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+          ) : (
+            <Search className="w-4 h-4 mr-2" />
+          )}
           Search
         </Button>
       </div>
@@ -163,7 +172,8 @@ export function StepSearchBusiness({ onSelect, onBack }: StepSearchBusinessProps
                 <div className="flex items-center gap-2">
                   <Star className="w-4 h-4 fill-yellow-400 text-yellow-400 flex-shrink-0" />
                   <span>
-                    {business.rating} stars ({business.reviewCount.toLocaleString()} reviews)
+                    {business.rating} stars (
+                    {business.reviewCount.toLocaleString()} reviews)
                   </span>
                 </div>
               </div>
@@ -178,5 +188,5 @@ export function StepSearchBusiness({ onSelect, onBack }: StepSearchBusinessProps
         </Button>
       </div>
     </div>
-  )
+  );
 }

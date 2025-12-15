@@ -1,6 +1,8 @@
-import { Avatar, AvatarFallback } from "@/components/ui/avatar"
-import { MessageSquare } from "lucide-react"
-import { reviewers } from "@/data/reviewers"
+// components/report/tabs/reviewers-tab.tsx
+
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { MessageSquare } from "lucide-react";
+import { reviewers } from "@/data/reviewers";
 
 export function ReviewersTab() {
   return (
@@ -14,7 +16,10 @@ export function ReviewersTab() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {reviewers.map((reviewer) => (
-          <div key={reviewer.id} className="border rounded-lg p-4 hover:bg-muted/30 transition-colors cursor-pointer">
+          <div
+            key={reviewer.id}
+            className="border rounded-lg p-4 hover:bg-muted/30 transition-colors cursor-pointer"
+          >
             <div className="flex items-center gap-3">
               <Avatar>
                 <AvatarFallback className="bg-primary/10 text-primary font-semibold">
@@ -33,5 +38,5 @@ export function ReviewersTab() {
         ))}
       </div>
     </div>
-  )
+  );
 }

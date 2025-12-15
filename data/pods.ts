@@ -1,3 +1,5 @@
+// data/pods.ts
+
 export const pods = [
   {
     id: "1",
@@ -95,4 +97,4 @@ export const pods = [
     isSuspicious: false,
     suspiciousScore: 72,
   },
-]
+];

@@ -1,25 +1,27 @@
-"use client"
+// components/projects/new-project-modal/step-project-name.tsx
 
-import type React from "react"
+"use client";
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+import type React from "react";
+
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 interface StepProjectNameProps {
-  onSubmit: (name: string) => void
+  onSubmit: (name: string) => void;
 }
 
 export function StepProjectName({ onSubmit }: StepProjectNameProps) {
-  const [projectName, setProjectName] = useState("")
+  const [projectName, setProjectName] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     if (projectName.trim()) {
-      onSubmit(projectName)
+      onSubmit(projectName);
     }
-  }
+  };
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
@@ -40,5 +42,5 @@ export function StepProjectName({ onSubmit }: StepProjectNameProps) {
         </Button>
       </div>
     </form>
-  )
+  );
 }

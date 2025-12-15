@@ -1,15 +1,17 @@
-"use client"
+// components/report/report-tabs.tsx
 
-import { useState } from "react"
-import { Card } from "@/components/ui/card"
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
-import { OverviewTab } from "./tabs/overview-tab"
-import { ReviewsTab } from "./tabs/reviews-tab"
-import { ReviewersTab } from "./tabs/reviewers-tab"
-import { PodsTab } from "./tabs/pods-tab"
+"use client";
+
+import { useState } from "react";
+import { Card } from "@/components/ui/card";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { OverviewTab } from "./tabs/overview-tab";
+import { ReviewsTab } from "./tabs/reviews-tab";
+import { ReviewersTab } from "./tabs/reviewers-tab";
+import { PodsTab } from "./tabs/pods-tab";
 
 export function ReportTabs() {
-  const [activeTab, setActiveTab] = useState("overview")
+  const [activeTab, setActiveTab] = useState("overview");
 
   return (
     <Card className="p-6">
@@ -38,5 +40,5 @@ export function ReportTabs() {
         </TabsContent>
       </Tabs>
     </Card>
-  )
+  );
 }

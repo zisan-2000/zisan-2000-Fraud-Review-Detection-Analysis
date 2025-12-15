@@ -1,23 +1,25 @@
-"use client"
+// components/auth/login-card.tsx
 
-import { Card } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { useAuth } from "@/lib/auth-context"
-import { Shield, AlertTriangle } from "lucide-react"
-import { useState } from "react"
+"use client";
+
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { useAuth } from "@/lib/auth-context";
+import { Shield, AlertTriangle } from "lucide-react";
+import { useState } from "react";
 
 export function LoginCard() {
-  const { login } = useAuth()
-  const [isLoading, setIsLoading] = useState(false)
+  const { login } = useAuth();
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleLogin = async () => {
-    setIsLoading(true)
-    await new Promise((resolve) => setTimeout(resolve, 1000))
+    setIsLoading(true);
+    await new Promise((resolve) => setTimeout(resolve, 1000));
 
     // Mock authenticated user email
-    login("admin@reviewfraud.com")
-    setIsLoading(false)
-  }
+    login("admin@reviewfraud.com");
+    setIsLoading(false);
+  };
 
   return (
     <Card className="w-full max-w-md p-8 shadow-lg">
@@ -27,7 +29,9 @@ export function LoginCard() {
             <Shield className="w-10 h-10 text-blue-600" />
             <h1 className="text-3xl font-bold text-gray-900">Review Fraud</h1>
           </div>
-          <p className="text-sm text-muted-foreground text-center">Advanced Review Analysis & Fraud Detection</p>
+          <p className="text-sm text-muted-foreground text-center">
+            Advanced Review Analysis & Fraud Detection
+          </p>
         </div>
 
         <div className="w-full bg-red-50 border-2 border-red-200 rounded-lg p-4 flex items-start gap-3">
@@ -35,12 +39,18 @@ export function LoginCard() {
           <div className="text-sm text-red-800">
             <p className="font-semibold mb-1">Restricted Access</p>
             <p>
-              This application is for authorized personnel only. Unauthorized access is prohibited and will be logged.
+              This application is for authorized personnel only. Unauthorized
+              access is prohibited and will be logged.
             </p>
           </div>
         </div>
 
-        <Button onClick={handleLogin} className="w-full h-12 text-base" size="lg" disabled={isLoading}>
+        <Button
+          onClick={handleLogin}
+          className="w-full h-12 text-base"
+          size="lg"
+          disabled={isLoading}
+        >
           {isLoading ? (
             <span className="flex items-center gap-2">
               <span className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
@@ -76,5 +86,5 @@ export function LoginCard() {
         </p>
       </div>
     </Card>
-  )
+  );
 }

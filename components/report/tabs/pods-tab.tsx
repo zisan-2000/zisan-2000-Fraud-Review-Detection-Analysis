@@ -1,6 +1,8 @@
-import { Badge } from "@/components/ui/badge"
-import { Building2, MapPin, AlertCircle, ExternalLink } from "lucide-react"
-import { Button } from "@/components/ui/button"
+// components/report/tabs/pods-tab.tsx
+
+import { Badge } from "@/components/ui/badge";
+import { Building2, MapPin, AlertCircle, ExternalLink } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -8,8 +10,8 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog"
-import { pods } from "@/data/pods"
+} from "@/components/ui/dialog";
+import { pods } from "@/data/pods";
 
 export function PodsTab() {
   return (
@@ -17,18 +19,22 @@ export function PodsTab() {
       <div className="mb-6">
         <h3 className="text-lg font-semibold">Review Pods (31)</h3>
         <p className="text-sm text-muted-foreground mt-1">
-          Businesses with overlapping reviewers indicating potential coordinated activity
+          Businesses with overlapping reviewers indicating potential coordinated
+          activity
         </p>
       </div>
 
       <div className="space-y-3">
         {pods.map((pod) => {
-          const mapQuery = encodeURIComponent(`${pod.name} ${pod.location}`)
-          const mapEmbedUrl = `https://www.google.com/maps?q=${mapQuery}&output=embed`
-          const mapDirectUrl = `https://www.google.com/maps/search/?api=1&query=${mapQuery}`
+          const mapQuery = encodeURIComponent(`${pod.name} ${pod.location}`);
+          const mapEmbedUrl = `https://www.google.com/maps?q=${mapQuery}&output=embed`;
+          const mapDirectUrl = `https://www.google.com/maps/search/?api=1&query=${mapQuery}`;
 
           return (
-            <div key={pod.id} className="border rounded-lg p-4 hover:bg-muted/30 transition-colors">
+            <div
+              key={pod.id}
+              className="border rounded-lg p-4 hover:bg-muted/30 transition-colors"
+            >
               <div className="flex items-start justify-between">
                 <div className="flex items-start gap-3 flex-1">
                   <Building2 className="w-5 h-5 text-muted-foreground flex-shrink-0 mt-0.5" />
@@ -56,7 +62,9 @@ export function PodsTab() {
                         <DialogContent className="max-w-2xl">
                           <DialogHeader>
                             <DialogTitle>{pod.name}</DialogTitle>
-                            <DialogDescription>{pod.location}</DialogDescription>
+                            <DialogDescription>
+                              {pod.location}
+                            </DialogDescription>
                           </DialogHeader>
                           <div className="space-y-3">
                             <div className="rounded-lg overflow-hidden border">
@@ -70,8 +78,17 @@ export function PodsTab() {
                                 title={`Map location for ${pod.name}`}
                               />
                             </div>
-                            <Button variant="outline" size="sm" className="w-full bg-transparent" asChild>
-                              <a href={mapDirectUrl} target="_blank" rel="noopener noreferrer">
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              className="w-full bg-transparent"
+                              asChild
+                            >
+                              <a
+                                href={mapDirectUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
                                 <ExternalLink className="w-4 h-4 mr-2" />
                                 Open in Google Maps
                               </a>
@@ -89,15 +106,17 @@ export function PodsTab() {
 
                 <Badge
                   variant="secondary"
-                  className={`text-sm font-semibold ${pod.isSuspicious ? "bg-red-100 text-red-800" : ""}`}
+                  className={`text-sm font-semibold ${
+                    pod.isSuspicious ? "bg-red-100 text-red-800" : ""
+                  }`}
                 >
                   {pod.commonReviewers} common
                 </Badge>
               </div>
             </div>
-          )
+          );
         })}
       </div>
     </div>
-  )
+  );
 }

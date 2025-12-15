@@ -1,6 +1,8 @@
-import { Star, Building2 } from "lucide-react"
-import { Badge } from "@/components/ui/badge"
-import { reviews } from "@/data/reviews"
+// components/report/tabs/reviews-tab.tsx
+
+import { Star, Building2 } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { reviews } from "@/data/reviews";
 
 export function ReviewsTab() {
   return (
@@ -11,7 +13,10 @@ export function ReviewsTab() {
 
       <div className="space-y-4">
         {reviews.map((review) => (
-          <div key={review.id} className="border rounded-lg p-4 hover:bg-muted/30 transition-colors">
+          <div
+            key={review.id}
+            className="border rounded-lg p-4 hover:bg-muted/30 transition-colors"
+          >
             <div className="flex items-start justify-between mb-2">
               <div className="flex items-center gap-2">
                 <Building2 className="w-4 h-4 text-muted-foreground" />
@@ -26,7 +31,11 @@ export function ReviewsTab() {
                 {[...Array(5)].map((_, i) => (
                   <Star
                     key={i}
-                    className={`w-4 h-4 ${i < review.rating ? "fill-yellow-400 text-yellow-400" : "text-gray-300"}`}
+                    className={`w-4 h-4 ${
+                      i < review.rating
+                        ? "fill-yellow-400 text-yellow-400"
+                        : "text-gray-300"
+                    }`}
                   />
                 ))}
               </div>
@@ -43,5 +52,5 @@ export function ReviewsTab() {
         ))}
       </div>
     </div>
-  )
+  );
 }

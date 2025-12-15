@@ -1,15 +1,21 @@
-"use client"
+// components/projects/new-project-modal/step-confirm-business.tsx
 
-import { Button } from "@/components/ui/button"
-import { MapPin, Phone, Star, Hash } from "lucide-react"
+"use client";
+
+import { Button } from "@/components/ui/button";
+import { MapPin, Phone, Star, Hash } from "lucide-react";
 
 interface StepConfirmBusinessProps {
-  business: any
-  onConfirm: () => void
-  onBack: () => void
+  business: any;
+  onConfirm: () => void;
+  onBack: () => void;
 }
 
-export function StepConfirmBusiness({ business, onConfirm, onBack }: StepConfirmBusinessProps) {
+export function StepConfirmBusiness({
+  business,
+  onConfirm,
+  onBack,
+}: StepConfirmBusinessProps) {
   return (
     <div className="space-y-6">
       <div className="bg-muted/50 rounded-lg p-6 space-y-4">
@@ -38,7 +44,9 @@ export function StepConfirmBusiness({ business, onConfirm, onBack }: StepConfirm
             <Hash className="w-5 h-5 text-muted-foreground flex-shrink-0 mt-0.5" />
             <div>
               <p className="font-medium">Google CID</p>
-              <p className="text-muted-foreground font-mono text-xs">{business.cid}</p>
+              <p className="text-muted-foreground font-mono text-xs">
+                {business.cid}
+              </p>
             </div>
           </div>
 
@@ -61,5 +69,5 @@ export function StepConfirmBusiness({ business, onConfirm, onBack }: StepConfirm
         <Button onClick={onConfirm}>Save & Start Scan</Button>
       </div>
     </div>
-  )
+  );
 }
