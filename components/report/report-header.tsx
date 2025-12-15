@@ -1,6 +1,5 @@
 // components/report/report-header.tsx
-
-"use client";
+// 🔧 FIX 2: clarify Rescan is future backend action
 
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -41,10 +40,16 @@ export function ReportHeader({ project }: ReportHeaderProps) {
           >
             {project.status}
           </Badge>
-          <Button variant="outline" size="sm">
+
+          <Button
+            variant="outline"
+            size="sm"
+            title="Triggers backend rescan in production"
+          >
             <RefreshCw className="w-4 h-4 mr-2" />
-            Rescan
+            Rescan (Prototype)
           </Button>
+
           <Button size="sm">
             <Download className="w-4 h-4 mr-2" />
             Export PDF
